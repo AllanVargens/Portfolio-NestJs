@@ -11,4 +11,4 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - .docker/mysql:/var/lib/mysql
+      - C:/Users/Clicou Mamou/Documents/Projects/Portfolio-NestJs/back-nest-js/.docker/mysql:/var/lib/mysql
