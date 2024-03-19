@@ -1,14 +1,14 @@
-version: '3'
-
 services:
-  mysql:
-    image: mysql:8.0.30-debian
-    container_name: mysql
+  postgres_db:
+    image: postgres
+    container_name: postgres
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: allanvargensbrasil
-      MSQL_DATABASE: Portfolio
+      POSTGRES_USER: allan_vargens
+      POSTGRES_PASSWORD: allanvargensbrasil
+      POSTGRES_DB: Portfolio
     ports:
-      - 3306:3306
+      - 5432:5432
     volumes:
-      - C:/Users/Clicou Mamou/Documents/Projects/Portfolio-NestJs/back-nest-js/.docker/mysql:/var/lib/mysql
+      - ./back-nest-js/.docker/pgdata:/var/lib/postgresql/data
+      - ./back-nest-js/db.sql:/docker-entrypoint-initdb.d/init.sql
