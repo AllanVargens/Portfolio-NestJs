@@ -17,11 +17,11 @@
   }
 
   model Projects {
-    id String @id @default(uuid())
-    project_name String
-    description String
-    link String
-    ImageURL Array[]? 
-    username User? @relation(fields: [user_id], references: [id])
-    user_id String?
+    id            String        @id    @default(uuid())
+    project_name  String        @unique
+    description   String
+    link          String        @unique
+    ImageURL      String[]      @default([""])
+    username      User?         @relation(fields: [user_id], references: [id])
+    user_id       String?
   }
