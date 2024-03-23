@@ -1,14 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Prisma } from "@prisma/client";
+import { Entity } from "typeorm";
 
 @Entity()
-export class User {
-  @PrimaryGeneratedColumn("uuid") uuid: string;
-  @Column()
-  user_id: string;
-  @Column()
+export class User implements Prisma.UserUncheckedCreateInput {
+  id?: string;
+  name: string;
   username: string;
-  @Column()
-  password: string;
-  @Column()
   email: string;
+  password: string;
+  projects?: Prisma.ProjectsUncheckedCreateNestedManyWithoutUsernameInput;
 }
