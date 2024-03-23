@@ -8,7 +8,6 @@ services:
       POSTGRES_PASSWORD: allanvargensbrasil
       POSTGRES_DB: Portfolio
     ports:
-      - 5432:5432
+      - "5432:5432"
     volumes:
       - ./back-nest-js/.docker/pgdata:/var/lib/postgresql/data
-      - ./back-nest-js/db.sql:/docker-entrypoint-initdb.d/init.sql
