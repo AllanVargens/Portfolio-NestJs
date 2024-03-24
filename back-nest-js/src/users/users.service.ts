@@ -104,6 +104,10 @@ export class UsersService {
       Logger.error("User not found", "", "UserService", true);
       throw new NotFoundException("User not found");
     }
-    return `This action removes user ${id}`;
+    return this.prisma.user.delete({
+      where: {
+        id: id,
+      },
+    });
   }
 }
