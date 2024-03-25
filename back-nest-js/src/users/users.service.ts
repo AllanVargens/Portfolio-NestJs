@@ -18,7 +18,6 @@ export class UsersService {
     name: true,
     username: true,
     email: true,
-    projects: true,
   };
   async create(data: CreateUserDto) {
     try {
