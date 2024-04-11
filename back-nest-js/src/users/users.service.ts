@@ -83,6 +83,12 @@ export class UsersService {
       Logger.error("User not found", "", "UserService", true);
       throw new NotFoundException("User not found");
     }
+    const { password } = updateUserDto;
+
+    if (password) {
+      const { hash } = await passwordHasher(password);
+      updateUserDto = { ...updateUserDto, password: hash };
+    }
 
     return this.prisma.user.update({
       where: {

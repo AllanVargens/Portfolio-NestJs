@@ -21,7 +21,7 @@
     project_name  String        @unique
     description   String
     link          String        @unique
-    ImageURL      String[]      @default([""])
+    ImageURL      String[]      @default([""]) @map("image_url")
     username      User?         @relation(fields: [user_id], references: [id])
     user_id       String?
   }

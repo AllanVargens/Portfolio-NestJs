@@ -15,7 +15,7 @@ CREATE TABLE "Projects" (
     "project_name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "link" TEXT NOT NULL,
-    "ImageURL" TEXT[] DEFAULT ARRAY['']::TEXT[],
+    "image_url" TEXT[] DEFAULT ARRAY['']::TEXT[],
     "user_id" TEXT,
 
     CONSTRAINT "Projects_pkey" PRIMARY KEY ("id")
