@@ -1,7 +1,7 @@
 import { Injectable, Logger, NotFoundException } from "@nestjs/common";
 import { CreateProjectDto } from "./dto/create-project.dto";
 import { UpdateProjectDto } from "./dto/update-project.dto";
-import { PrismaService } from "src/prisma/prisma.service";
+import { PrismaService } from "../prisma/prisma.service";
 
 @Injectable()
 export class ProjectsService {
@@ -17,13 +17,12 @@ export class ProjectsService {
     user_id: true,
   };
 
-  async create(data: CreateProjectDto) {
+  async create(data: CreateProjectDto & { user_id: string }) {
     try {
-      const { project_name, description, ImageURL, link, user_id, username } =
-        data;
+      const { project_name, description, ImageURL, link, user_id } = data;
       const foundUser = await this.prisma.user.findFirst({
         where: {
-          username,
+          id: user_id,
         },
       });
 
@@ -49,15 +48,29 @@ export class ProjectsService {
     }
   }
 
-  async findAll() {
+  async findAll(user_id: string) {
     return await this.prisma.projects.findMany({
+      where: {
+        user_id,
+      },
       select: this.response,
     });
   }
 
-  async findOne(id: string) {
+  async findOne(user_id: string, id: string) {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        id: user_id,
+      },
+    });
+
+    if (!user) {
+      throw new NotFoundException("Project not found");
+    }
+
     const project = await this.prisma.projects.findUnique({
       where: {
+        user_id,
         id,
       },
     });
@@ -69,9 +82,14 @@ export class ProjectsService {
     return project;
   }
 
-  async update(id: string, updateProjectDto: UpdateProjectDto) {
+  async update(
+    user_id: string,
+    id: string,
+    updateProjectDto: UpdateProjectDto
+  ) {
     const project = await this.prisma.projects.findUnique({
       where: {
+        user_id,
         id,
       },
     });
@@ -95,9 +113,10 @@ export class ProjectsService {
     });
   }
 
-  async remove(id: string) {
+  async remove(user_id: string, id: string) {
     const project = await this.prisma.projects.findUnique({
       where: {
+        user_id,
         id,
       },
     });
@@ -108,6 +127,7 @@ export class ProjectsService {
 
     await this.prisma.projects.delete({
       where: {
+        user_id,
         id,
       },
     });

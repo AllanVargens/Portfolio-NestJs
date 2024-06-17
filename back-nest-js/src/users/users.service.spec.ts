@@ -9,6 +9,7 @@ import {
   selectedResponseMock,
 } from "./user.mock";
 import { ConflictException, NotFoundException } from "@nestjs/common";
+import { passwordHasher } from "../utils/encrypt.utils";
 
 describe("UsersService", () => {
   let service: UsersService;
@@ -98,6 +99,10 @@ describe("UsersService", () => {
       prisma.user.findUnique = jest.fn().mockResolvedValue(fakeUsers[0].id);
       prisma.user.update = jest.fn().mockResolvedValue(fakeUsers[0]);
       const response = await service.update(fakeUsers[0].id, updateDtoUser);
+      if (updateDtoUser.password) {
+        const { hash } = await passwordHasher(updateDtoUser.password);
+        fakeUsers[0].password = hash;
+      }
       expect(response).toBe(fakeUsers[0]);
       expect(prisma.user.update).toHaveBeenCalledTimes(1);
       expect(prisma.user.update).toHaveBeenCalledWith({

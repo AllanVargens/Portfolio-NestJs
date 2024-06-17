@@ -4,6 +4,5 @@ export class Project {
   description: string;
   link: string;
   ImageURL: string[];
-  username: string;
   user_id: string;
 }

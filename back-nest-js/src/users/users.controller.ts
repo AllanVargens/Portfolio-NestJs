@@ -18,7 +18,7 @@ import { ResponseUserObject } from "./dto/response-user.object";
 @Controller("users")
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
-  @ApiBody({ type: CreateUserDto })
+  @ApiBody({ description: "Create User DTO", type: CreateUserDto })
   @ApiOperation({ summary: "Create user" })
   @ApiResponse({
     status: HttpStatus.CREATED,

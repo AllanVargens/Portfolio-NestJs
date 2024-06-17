@@ -10,8 +10,7 @@ export const fakeProjects: Project[] = [
     description: "description1",
     link: "link1",
     ImageURL: ["image1", "image2", "image3"],
-    username: fakeUsers[0].username,
-    user_id: fakeUsers[0].id,
+    user_id: "1",
   },
   {
     id: "2",
@@ -19,8 +18,7 @@ export const fakeProjects: Project[] = [
     description: "description2",
     link: "link2",
     ImageURL: ["image1", "image2"],
-    username: fakeUsers[1].username,
-    user_id: fakeUsers[1].id,
+    user_id: "2",
   },
   {
     id: "3",
@@ -28,8 +26,7 @@ export const fakeProjects: Project[] = [
     description: "description3",
     link: "link3",
     ImageURL: ["image1"],
-    username: fakeUsers[3].username,
-    user_id: fakeUsers[3].id,
+    user_id: "3",
   },
 ];
 
@@ -38,8 +35,7 @@ export const createDtoMock: CreateProjectDto = {
   description: "mock",
   ImageURL: ["image1", "image2", "image3"],
   link: "mock",
-  username: fakeUsers[3].username,
-  user_id: fakeUsers[3].id,
+  user_id: "3",
 };
 
 export const selectedResponseMock: ResponseProjectObjetct = {
@@ -48,8 +44,7 @@ export const selectedResponseMock: ResponseProjectObjetct = {
   description: "mock",
   link: "mock",
   ImageURL: ["mock", "mock", "mock"],
-  username: fakeUsers[0].username,
-  user_id: fakeUsers[0].id,
+  user_id: "mock",
 };
 
 export const prismaSelectQuery = {
@@ -58,7 +53,6 @@ export const prismaSelectQuery = {
   description: true,
   link: true,
   ImageURL: true,
-  username: true,
   user_id: true,
 };
 
