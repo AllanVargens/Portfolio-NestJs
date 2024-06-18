@@ -17,7 +17,7 @@ export class CreateProjectDto {
   @IsNotEmpty()
   readonly description: string;
   @ApiProperty({
-    example: "['image1.com.br', 'image2.com.br', 'image3.com.br']",
+    example: ["image1.com", "image2.com"],
     description: "List of images about the project",
   })
   @IsArray()
@@ -29,10 +29,7 @@ export class CreateProjectDto {
   @IsString()
   @IsNotEmpty()
   readonly link: string;
-  @ApiProperty({
-    example: "1e93c527-3265-4c05-9772-b8233e703108",
-    description: "user_id that the project belongs",
-  })
+
   @IsString()
   @IsNotEmpty()
   readonly user_id: string;

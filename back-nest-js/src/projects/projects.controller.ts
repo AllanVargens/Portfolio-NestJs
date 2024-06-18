@@ -45,7 +45,7 @@ export class ProjectsController {
   })
   @Get(":id")
   findOne(@Param("user_id") user_id: string, @Param("id") id: string) {
-    return this.projectsService.findOne(id, user_id);
+    return this.projectsService.findOne(user_id, id);
   }
   @ApiBody({ type: UpdateProjectDto })
   @ApiOperation({ summary: "Update user" })

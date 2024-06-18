@@ -13,7 +13,6 @@ export class ProjectsService {
     description: true,
     ImageURL: true,
     link: true,
-    username: true,
     user_id: true,
   };
 
@@ -58,21 +57,12 @@ export class ProjectsService {
   }
 
   async findOne(user_id: string, id: string) {
-    const user = await this.prisma.user.findUnique({
+    const project = await this.prisma.projects.findFirst({
       where: {
-        id: user_id,
+        user_id: user_id,
+        id: id,
       },
-    });
-
-    if (!user) {
-      throw new NotFoundException("Project not found");
-    }
-
-    const project = await this.prisma.projects.findUnique({
-      where: {
-        user_id,
-        id,
-      },
+      select: this.response,
     });
 
     if (!project) {
