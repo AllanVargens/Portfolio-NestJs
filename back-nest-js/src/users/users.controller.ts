@@ -1,7 +1,6 @@
 import {
   Controller,
   Get,
-  Post,
   Body,
   Patch,
   Param,
@@ -10,7 +9,6 @@ import {
   UseGuards,
 } from "@nestjs/common";
 import { UsersService } from "./users.service";
-import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { ResponseUserObject } from "./dto/response-user.object";
@@ -21,17 +19,6 @@ import { AuthGuard } from "../auth/auth.guard";
 @Controller("users")
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
-  @ApiBody({ description: "Create User DTO", type: CreateUserDto })
-  @ApiOperation({ summary: "Create user" })
-  @ApiResponse({
-    status: HttpStatus.CREATED,
-    description: "The user has been successfully created.",
-    type: ResponseUserObject,
-  })
-  @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
-  }
 
   @ApiOperation({ summary: "Find All Users" })
   @ApiResponse({
