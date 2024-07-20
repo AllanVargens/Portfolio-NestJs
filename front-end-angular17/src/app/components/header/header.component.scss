@@ -1,0 +1,145 @@
+@import "../../../variables.scss";
+
+.header-container {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 8px;
+    gap: 30px;
+    
+    overflow-x: hidden;
+
+    .user-section{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        gap: 15px;
+        width: 100%;
+
+        .name{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            
+            span{
+                width: 20%;
+                background: rgba(245, 245, 245, 0.527);
+                height: 4px;
+            }
+        }
+    }
+
+    .about-me{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: rgb(180, 180, 180);
+        
+
+        h1{
+            color: white;
+        }
+        
+        p{
+            padding: 10px;
+        }
+       
+    }
+    
+    img{
+        filter: drop-shadow(0px 0px 5px #000000);
+    }   
+    
+
+    div .title-img {
+        width: 1000%;
+        height: 4rem;
+        background: url("../../../assets/images/png/full-stack-title.png") repeat-x;
+        background-size: contain;
+        font-size: 4rem;
+        color: white;
+        filter: drop-shadow(0px 0px 5px #1d0e1b);
+        animation: slideToRight 10s linear infinite;
+        position: relative;
+    }
+}
+
+@keyframes slideToRight {
+    0% {
+        transform: translateX(-200vw);
+      }
+      49.9% {
+        transform: translateX(-100vw);
+      }
+      50% {
+        transform: translateX(-300vw);
+      }
+      100% {
+        transform: translateX(-200vw);
+      }
+  }
+
+  @keyframes slideToLeft {
+    0% {
+        transform: translateX(0);
+      }
+      49.9% {
+        transform: translateX(-100vw);
+      }
+      50% {
+        transform: translateX(100vw);
+      }
+      100% {
+        transform: translateX(0);
+      }
+  }
+  
+  div .title-img {
+    animation: slide 10s linear infinite reverse;
+    position: relative;
+  }
+
+@media (min-width: 782px){
+    .header-container {
+        flex-direction: row;
+        padding: 40px 30px;
+        
+        div .title-img{
+            animation: slideToRight 15s linear infinite;
+            white-space: nowrap;
+            z-index: -1;
+        }
+
+        .about-me{
+            width: 70%;
+            margin-top: -2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .user-section{
+            
+            width: auto;
+            .name{
+
+                justify-content: center;
+                align-items: center;
+                span{
+                    display: none;
+                }
+            }
+        }
+    }
+}

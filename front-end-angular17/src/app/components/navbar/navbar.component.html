@@ -1,0 +1,17 @@
+<header>
+  <nav>
+    <a href="#">AV</a>
+    <span>PORTFOLIO</span>
+    <div class="hamburger" (click)="toggleMenu()">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <ul [class.active]="menuActive">
+      <li><a href="#">About</a></li>
+      <li><a href="#">Projects</a></li>
+      <li><a href="#">Technologies</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+</header>

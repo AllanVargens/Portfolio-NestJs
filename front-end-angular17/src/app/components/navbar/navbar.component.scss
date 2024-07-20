@@ -1,0 +1,99 @@
+@import "../../../variables.scss";
+
+header {
+    background-color: #333;
+    margin: 5px auto;
+    border-radius: 8px;
+    width: 95%;
+    color: white;
+    padding: 10px 20px;
+    font-weight: bold;
+    background-color: $grey-500;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    
+    a{
+        color: white;
+    }
+
+    span{
+      margin-left: -1rem;
+    }
+  }
+  
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  
+  .hamburger .line {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+    transition: all 0.3s ease;
+  }
+  
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  ul.active {
+    display: flex;
+    z-index: 3;
+    background-color: $grey-700;
+  }
+  
+  ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 200px;
+  }
+  
+  ul.active {
+    display: flex;
+    width: 100%;
+    padding-left: 1rem;
+  }
+  
+  ul li {
+    padding: 10px 0;
+    text-align: center;
+  }
+  
+  ul li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  @media (min-width: 768px) {
+    .hamburger {
+      display: none;
+    }
+    nav{
+        span{
+            margin-left: 80px;
+        }
+    }
+    ul {
+      display: flex;
+      flex-direction: row;
+      position: static;
+      width: auto;
+      border: none;
+    }
+  }
+  

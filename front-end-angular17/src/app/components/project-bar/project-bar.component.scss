@@ -1,0 +1,39 @@
+@import "../../../variables.scss";
+
+.project-bar {
+ width: 95%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ text-transform: uppercase;
+ letter-spacing: 5px;
+ color: white;
+ margin-top: 2rem;
+ padding: 1rem;
+ gap: 3rem;
+    .title-bar{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 5px;
+        height: 5rem;
+        width: 30%;
+        min-width: 220px;
+        background-color: $grey-500;
+        border-radius: 12px;
+
+        h1{
+            font-size: 2rem;
+            margin: 0 auto;
+        }
+    
+    }
+
+    .swiper{
+        background-color: white;
+        width: 60%;
+        height: 15rem;
+        border: 1px solid gray;
+        border-radius: 12px;
+    }
+}
