@@ -3,7 +3,7 @@
 /node_modules
 
 # db
-\back-nest-js\.docker
+/back-nest-js/.docker
 
 # Logs
 logs
