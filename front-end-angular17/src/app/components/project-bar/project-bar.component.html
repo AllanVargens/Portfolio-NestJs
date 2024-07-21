@@ -4,5 +4,12 @@
         <h1>Projects</h1>
         <div class="line-left"></div>
     </div>
-    <div class="swiper">swiper</div>
+        <swiper-container class="mySwiper" pagination="true" effect="coverflow"
+         grab-cursor="true" centered-slides="true"  coverflow-effect-rotate="10" coverflow-effect-stretch="0"
+         coverflow-effect-depth="100" pagination-clickable="true"
+        coverflow-effect-modifier="3" coverflow-effect-slide-shadows="true"  init="false" >
+            <swiper-slide *ngFor="let card of projects">
+                <app-card-project [title]="card.name" [image]="card.image"></app-card-project>
+            </swiper-slide>
+          </swiper-container>
 </section>

@@ -10,7 +10,7 @@
  color: white;
  margin-top: 2rem;
  padding: 1rem;
- gap: 3rem;
+ gap: 1rem;
     .title-bar{
         display: flex;
         flex-direction: column;
@@ -29,11 +29,13 @@
     
     }
 
-    .swiper{
-        background-color: white;
+    swiper-container{
         width: 60%;
-        height: 15rem;
-        border: 1px solid gray;
-        border-radius: 12px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        swiper-slider {
+            background-position: center;
+            background-size: cover;
+        }
     }
 }
