@@ -48,7 +48,7 @@ export class ProjectBarComponent {
     ];
     this.swiperEl = document.querySelector('swiper-container');
     Object.assign(this.swiperEl, {
-      slidesPerView: 1,
+      slidesPerView: 2,
       spaceBetween: 5,
       breakpoints: {
         640: {

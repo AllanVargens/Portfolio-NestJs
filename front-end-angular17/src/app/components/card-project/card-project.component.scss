@@ -1,4 +1,10 @@
 @import "../../../variables.scss";
+
+    .container-card{
+        display: block;
+        width: 100%;
+        min-width: 200px;
+    }
     .card {
         height: 250px;
         width: auto;
