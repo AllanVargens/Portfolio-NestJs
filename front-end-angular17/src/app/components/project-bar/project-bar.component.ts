@@ -3,11 +3,12 @@ import { CardProjectComponent } from '../card-project/card-project.component';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Project } from '../../types/project.type';
 import { ProjectsService } from '../../services/projects.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-project-bar',
   standalone: true,
-  imports: [CardProjectComponent, CommonModule, NgOptimizedImage],
+  imports: [CardProjectComponent, CommonModule, NgOptimizedImage, RouterModule],
   templateUrl: './project-bar.component.html',
   styleUrl: './project-bar.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
