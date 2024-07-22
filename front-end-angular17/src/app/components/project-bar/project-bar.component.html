@@ -1,12 +1,12 @@
 <section class="project-bar">
-        <button>See all projects</button>
+        <button><a routerLink="/projects">See all projects</a></button>
         <span>PROJECTS</span>
-        <swiper-container class="mySwiper" pagination="true" effect="coverflow"
+        <swiper-container class="mySwiper" effect="coverflow"
           centered-slides="true"  coverflow-effect-rotate="10" coverflow-effect-stretch="0"
          coverflow-effect-depth="100" pagination-clickable="true"
         coverflow-effect-modifier="3" coverflow-effect-slide-shadows="true"  init="false" >
             <swiper-slide *ngFor="let card of projects">
-                <app-card-project [title]="card.name" [image]="card.image"></app-card-project>
+                <app-card-project [title]="card.title" [image]="card.sections[0].imageURL"  [id]="card.project_id"></app-card-project>
             </swiper-slide>
           </swiper-container>
 </section>

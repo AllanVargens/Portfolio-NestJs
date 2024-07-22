@@ -1,11 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CardProjectComponent } from '../card-project/card-project.component';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-
-type Project = {
-  name: string;
-  image: string;
-};
+import { Project } from '../../types/project.type';
+import { ProjectsService } from '../../services/projects.service';
 
 @Component({
   selector: 'app-project-bar',
@@ -19,33 +16,10 @@ export class ProjectBarComponent {
   projects: Project[] = [];
   swiperEl: any;
 
+  constructor(private projectService: ProjectsService) {}
+
   ngOnInit() {
-    this.projects = [
-      {
-        name: 'Project 1',
-        image: 'imagem-aleatoria.png',
-      },
-      {
-        name: 'Project 2',
-        image: 'imagem-aleatoria.png',
-      },
-      {
-        name: 'Project 3',
-        image: 'imagem-aleatoria.png',
-      },
-      {
-        name: 'Project 4',
-        image: 'imagem-aleatoria.png',
-      },
-      {
-        name: 'Project 5',
-        image: 'imagem-aleatoria.png',
-      },
-      {
-        name: 'Project 6',
-        image: 'imagem-aleatoria.png',
-      },
-    ];
+    this.projects = this.projectService.getProjects();
     this.swiperEl = document.querySelector('swiper-container');
     Object.assign(this.swiperEl, {
       slidesPerView: 2,
