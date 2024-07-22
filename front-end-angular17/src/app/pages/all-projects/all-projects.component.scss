@@ -1,0 +1,66 @@
+@import "../../../variables.scss";
+
+section{
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    margin: 0.8rem auto;
+    gap: 25px;
+
+    .search{
+        padding: 5px 20px;
+        display: flex;
+        align-items: start;
+        justify-content: end;
+
+        h1{
+        display: flex;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 6vw;
+        font-weight: 900;
+        color: $grey-500;
+
+            span{
+                text-wrap: wrap;
+                width: 2rem;
+            }
+        }
+
+        label{
+            z-index: 2;
+            
+            input{
+                width: 100%;
+                min-width: 250px;
+                padding: 10px;
+                border: none;
+                outline: none;
+                border-radius: 4px;
+                font-size: 0.7rem;
+                font-weight: 900;
+                color: white;
+                background-color: $grey-500;
+                transition: background-color .3s ease;
+            }
+        }
+    }
+
+    .projects-bar{
+        z-index: 3;
+        background-color: $grey-600;
+        border-radius: 12px;
+        color: white;
+        font-size: x-medium;
+        padding: 2rem;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 5vh;
+
+        .project-item{
+            width: min-content;
+        }
+    }
+}

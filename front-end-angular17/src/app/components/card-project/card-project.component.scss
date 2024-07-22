@@ -1,34 +1,46 @@
 @import "../../../variables.scss";
 
-    .container-card{
-        display: block;
-        width: 100%;
-        min-width: 200px;
-        margin: 0 auto;
-    }
-    .card {
-        height: 250px;
-        width: auto;
-        background-color: $grey-500;
-        border-radius: 12px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 8px;
+ .container-card {
+    width: 100%;
+    min-width: 200px;
+    max-width: 350px;
+    height: auto;
+    min-height: 350px;
+    max-height: 400px;
+    display: flex;
+    flex-direction: column;
+    padding: 0.7rem;
+    gap: 1rem;
+    align-items: center;
+
+    /* From https://css.glass */
+    background: rgba(37, 37, 37, 0.68);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    border: 1px solid rgba(76, 71, 71, 0.17);
 
         .image-card {
-            img{
-                width: 180px;
-                height: 180px;
+        
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            img {
+                width: 90%;
+                height: 70%;
+                max-height: 280px;
                 border-radius: 12px;
             }
-            button {
-                position: absolute;
-                right: 10px;
-                bottom: 70px;
+    
+            button{
+                position: relative;
                 transition: all .5s ease;
-                color: #fff;
-                border: 3px solid white;
+                color: $white-smoke;
+                border: 3px solid $grey-300;
                 text-transform: uppercase;
                 text-align: center;
                 line-height: 1;
@@ -39,37 +51,22 @@
                 border-radius: 4px;
                 cursor: pointer;
             }
+    
             button:hover {
+                border-radius: 4px;
                 color: black;
-                background-color: #fff;
+                background-color: $white-smoke;
             }
         }
-        
-
-        
+    
         .card-body{
-            width: 80%;
-            padding: 5px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-
-            h5{
-                font-size: 60%;
-            }
-        }
-
-    }
-
-@media (min-width: 768px) {
-    .image-card{
-        width: max-content;
-        img {
-            width: 300px !important;
-        }
-        button {
-            right: 60px !important;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           height: 50px;
+    
+           h5{
+            font-size: 1rem;
+           }
         }
     }
-}

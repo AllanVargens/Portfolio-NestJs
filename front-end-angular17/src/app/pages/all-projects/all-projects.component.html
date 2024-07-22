@@ -1,0 +1,13 @@
+<section class="projects-container">
+    <div class="search">
+        <h1><span>ALL PROJECTS</span></h1>
+        <label for="search">
+            <input type="text" id="search" placeholder="Search projects by name...">
+        </label>
+    </div>
+    <div class="projects-bar">
+        <div *ngFor="let project of projects" class="project-item">
+            <app-card-project [title]="project.title" [image]="project.sections[0].imageURL"  [id]="project.project_id"></app-card-project>
+        </div>
+    </div>
+</section>
