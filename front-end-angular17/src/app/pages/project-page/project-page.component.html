@@ -1,0 +1,35 @@
+<section>
+    <div class="information">
+        <h1>{{project.title}}</h1>
+        <div class="links">
+            <a [routerLink]="[project.project_url]" *ngIf="project.project_url"><i class="devicon-appwrite-plain"></i></a>
+            <a [routerLink]="[project.github_project]" *ngIf="project.github_project"><i class="devicon-github-original"></i></a>
+        </div>
+    </div>
+    <div class="video" *ngIf="project.youtube_video"></div>
+    <p>{{project.description}}</p>
+    <div class="tech-container" *ngIf="project.backend_about">
+        <h2>BackEnd</h2>
+        <hr/>
+        <ul class="tech-tags">
+            <li *ngFor="let tags of project.tags_back">{{tags}}</li>
+        </ul>
+        <div class="tech-items">
+            <p>{{project.backend_about}}</p>
+        </div>
+    </div>
+    <div class="tech-container" *ngIf="project.frontend_about">
+        <h2>FrontEnd</h2>
+        <hr/>
+        <ul class="tech-tags">
+            <li *ngFor="let tags of project.tags_front">{{tags}}</li>
+        </ul>
+        <div class="tech-items">
+            <p>{{project.frontend_about}}</p>
+        </div>
+    </div>
+    <div class="info-section" [ngClass]="{'reverse': i % 2 !== 0}" *ngFor="let section of project.sections; let i = index">
+        <img src="../../../assets/images/png/imagem-aleatoria.png"  alt="">
+        <p class="isLeft">{{section.description}}</p>
+    </div>
+</section>

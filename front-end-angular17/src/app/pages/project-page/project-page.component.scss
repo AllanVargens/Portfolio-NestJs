@@ -1,0 +1,83 @@
+@import "../../../variables.scss";
+
+section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px auto;
+    width: 95%;
+    color: white;
+    gap: 20px;
+
+    .information{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h1{
+            font-size: 3rem;
+        }
+
+        .links{
+            i{
+                font-size: 30px;
+                color: white;
+                margin-right: 5px;
+            }
+        }
+    }
+
+    .video{
+        width: 300px;
+        height: 200px;
+        border: 1px solid white;
+        margin: 1rem auto;
+    }
+
+    p{
+      color: $white-smoke;  
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    .tech-container{
+        .tech-tags{
+            display: flex;
+            gap: 10px;
+            margin-bottom: 2rem;
+
+            li{
+                background-color: $grey-300;
+                padding: 2px 4px;
+                border-radius: 8px;
+                color: $white-smoke;
+            }
+        }
+    }
+    .info-section{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+
+        img{
+            width: 300px;
+            height: 150px;
+        }
+
+    }
+    .info-section.reverse {
+        flex-direction: row-reverse;
+      }
+}
+
+@media (min-width: 768px) {
+    section{
+        .info-section{
+            img{
+                width: 250px;
+                height: 170px;
+            }
+        }
+    }
+}
