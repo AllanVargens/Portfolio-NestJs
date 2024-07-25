@@ -27,8 +27,8 @@ export class ProjectBarComponent {
       spaceBetween: 5,
       breakpoints: {
         640: {
-          slidesPerView: 2,
-          spaceBetween: 5,
+          slidesPerView: 3,
+          spaceBetween: 0,
         },
       },
     });

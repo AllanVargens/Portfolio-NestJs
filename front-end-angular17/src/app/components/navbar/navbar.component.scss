@@ -16,13 +16,15 @@ header {
     justify-content: space-between;
     align-items: center;
     background: none;
+
+    .logo{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     
     a{
         color: white;
-    }
-
-    span{
-      margin-left: -1rem;
     }
   }
   
@@ -83,10 +85,8 @@ header {
     .hamburger {
       display: none;
     }
-    nav{
-        span{
-            margin-left: 80px;
-        }
+    span{
+      font-size: 1;
     }
     ul {
       display: flex;
@@ -94,6 +94,7 @@ header {
       position: static;
       width: auto;
       border: none;
+      font-size: 1rem;
     }
   }
   

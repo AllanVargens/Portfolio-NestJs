@@ -3,15 +3,18 @@
  .container-card {
     width: 100%;
     min-width: 200px;
-    max-width: 350px;
+    max-width: 300px;
     height: auto;
-    min-height: 350px;
-    max-height: 400px;
+    min-height: 250px;
+    max-height: 300px;
     display: flex;
     flex-direction: column;
+    justify-self: center;
     padding: 0.7rem;
     gap: 1rem;
     align-items: center;
+
+    margin-bottom: 1rem;
 
     /* From https://css.glass */
     background: rgba(37, 37, 37, 0.68);
@@ -32,7 +35,7 @@
             img {
                 width: 90%;
                 height: 70%;
-                max-height: 280px;
+                max-height: 180px;
                 border-radius: 12px;
             }
     
