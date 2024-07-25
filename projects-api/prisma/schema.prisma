@@ -18,10 +18,11 @@ model User {
   name              String
   username          String    @unique
   email             String    @unique
+  description       String
   password          String
   userImage         String?   @map("user_image")
-  about             String?
-  role              String
+  about             String?   @default("a description about you.")
+  role              String    @default("basic")
   technologiesBack  String[]  @map("technologies_back")
   technologiesFront String[]  @map("technologies_front")
   linkedin          String?
