@@ -38,3 +38,5 @@ lerna-debug.log*
 !.vscode/extensions.json
 /projects-api/postgres/base
 /back-nest-js/.docker
+/projects-api/postgres
+/back-nest-js/.docker

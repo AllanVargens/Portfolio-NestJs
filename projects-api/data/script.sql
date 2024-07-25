@@ -35,5 +35,29 @@ CREATE TABLE "Section" (
     "imageURL" VARCHAR(255) NOT NULL,
     "description" TEXT NOT NULL,
     "projectId" INTEGER NOT NULL,
-    CONSTRAINT fk_project FOREIGN KEY ("projectId") REFERENCES "Project"(id) ON DELETE CASCADE
+    CONSTRAINT fk_project FOREIGN KEY ("projectId") REFERENCES "Project" (id) ON DELETE CASCADE
 );
+
+INSERT INTO
+    "User" (
+        "name",
+        "username",
+        "password",
+        "email",
+        "linkedin",
+        "gitHub",
+        "userImage",
+        "role"
+        "description"
+    )
+VALUES (
+        "Allan Vargens",
+        "allan.vargens",
+        "allanzinho10",
+        "allanvargens@gmail.com",
+        "https://www.linkedin.com/in/allan-vargens-silva-973978196/",
+        "https://github.com/AllanVargens",
+        "assets/images/png/allan-vargens.png",
+        "admin"
+        "Estudante de Engenharia da Computação com ênfase em Desenvolvimento web/mobile. Convencido de que todo progresso intelectual não precisa ter fim e que o conhecimento é o melhor investimento."   
+    );
