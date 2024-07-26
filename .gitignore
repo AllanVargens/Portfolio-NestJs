@@ -40,3 +40,4 @@ lerna-debug.log*
 /back-nest-js/.docker
 /projects-api/postgres
 /back-nest-js/.docker
+/projects-api/prisma/migrations
