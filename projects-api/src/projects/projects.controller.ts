@@ -10,21 +10,27 @@ import {
 import { ProjectsService } from './projects.service';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
+import { Public } from 'src/auth/constants';
 
-@Controller('projects')
+@Controller(':userId/projects')
 export class ProjectsController {
   constructor(private readonly projectsService: ProjectsService) {}
 
-  @Post()
-  create(@Body() createProjectDto: CreateProjectDto) {
+  @Post('')
+  create(
+    @Body() createProjectDto: CreateProjectDto,
+    @Param('userid') userId: string,
+  ) {
+    createProjectDto.userId = userId;
     return this.projectsService.create(createProjectDto);
   }
 
+  @Public()
   @Get()
   findAll() {
     return this.projectsService.findAll();
   }
-
+  @Public()
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.projectsService.findOne(+id);
