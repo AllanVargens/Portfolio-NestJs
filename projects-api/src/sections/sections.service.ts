@@ -1,26 +1,61 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateSectionDto } from './dto/create-section.dto';
 import { UpdateSectionDto } from './dto/update-section.dto';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class SectionsService {
-  create(createSectionDto: CreateSectionDto) {
-    return 'This action adds a new section';
+  constructor(private prisma: PrismaService) {}
+  async create(createSectionDto: CreateSectionDto) {
+    const { description, imageURL, projectId } = createSectionDto;
+
+    const foundProject = await this.prisma.project.findUnique({
+      where: { id: projectId },
+    });
+
+    if (!foundProject) {
+      throw new NotFoundException(`Project #${projectId} not found`);
+    }
+
+    return await this.prisma.section.create({
+      data: { description, imageURL, projectId },
+    });
   }
 
   findAll() {
-    return `This action returns all sections`;
+    return this.prisma.section.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} section`;
+  async update(
+    projectId: number,
+    id: number,
+    updateSectionDto: UpdateSectionDto,
+  ) {
+    const foundProject = await this.prisma.project.findUnique({
+      where: { id: projectId },
+    });
+
+    if (!foundProject) {
+      throw new NotFoundException(`Project #${projectId} not found`);
+    }
+
+    return await this.prisma.section.update({
+      where: { id, projectId },
+      data: updateSectionDto,
+    });
   }
 
-  update(id: number, updateSectionDto: UpdateSectionDto) {
-    return `This action updates a #${id} section`;
-  }
+  async remove(projectId: number, id: number) {
+    const foundProject = await this.prisma.project.findUnique({
+      where: { id: projectId },
+    });
 
-  remove(id: number) {
-    return `This action removes a #${id} section`;
+    if (!foundProject) {
+      throw new NotFoundException(`Project #${projectId} not found`);
+    }
+
+    return await this.prisma.section.delete({
+      where: { id, projectId },
+    });
   }
 }

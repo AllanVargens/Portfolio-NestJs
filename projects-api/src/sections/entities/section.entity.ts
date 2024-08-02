@@ -1,5 +1,4 @@
-import { Project } from 'src/projects/entities/project.entity';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Section {
@@ -14,9 +13,4 @@ export class Section {
 
   @Column({ name: 'project_id' })
   projectId: number;
-
-  @ManyToOne(() => Project, (project) => project.sections, {
-    onDelete: 'CASCADE',
-  })
-  project: Project;
 }
