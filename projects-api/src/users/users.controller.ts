@@ -1,6 +1,5 @@
 import { Controller, Get, HttpCode, HttpStatus, Param } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { ResponseUserDto } from './dto/ResponseUserDto';
 import { Public } from 'src/auth/constants';
 
 @Controller('users')
@@ -9,7 +8,7 @@ export class UsersController {
   @Public()
   @HttpCode(HttpStatus.FOUND)
   @Get('users/:id')
-  findOne(@Param('id') id: string): Promise<ResponseUserDto | undefined> {
+  findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
   }
 }
