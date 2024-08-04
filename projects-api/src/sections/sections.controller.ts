@@ -1,9 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { SectionsService } from './sections.service';
 import { CreateSectionDto } from './dto/create-section.dto';
 import { UpdateSectionDto } from './dto/update-section.dto';
 
-@Controller('sections')
+@Controller(':projectId/sections')
 export class SectionsController {
   constructor(private readonly sectionsService: SectionsService) {}
 
@@ -17,18 +25,17 @@ export class SectionsController {
     return this.sectionsService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.sectionsService.findOne(+id);
-  }
-
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSectionDto: UpdateSectionDto) {
-    return this.sectionsService.update(+id, updateSectionDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateSectionDto: UpdateSectionDto,
+    @Param('projectId') projectId: string,
+  ) {
+    return this.sectionsService.update(+projectId, +id, updateSectionDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.sectionsService.remove(+id);
+  remove(@Param('id') id: string, @Param('projectId') projectId: string) {
+    return this.sectionsService.remove(+projectId, +id);
   }
 }
