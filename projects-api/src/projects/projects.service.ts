@@ -68,7 +68,11 @@ export class ProjectsService {
           projectVideo,
           tagsBack,
           tagsFront,
-          userId,
+          user: {
+            connect: {
+              id: userId,
+            },
+          },
         },
       });
     } catch (e) {

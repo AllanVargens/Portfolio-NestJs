@@ -1,4 +1,4 @@
-export type LoginDto = {
+export class LoginDto {
   username: string;
   password: string;
-};
+}

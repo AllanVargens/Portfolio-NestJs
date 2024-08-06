@@ -1,0 +1,35 @@
+# @name autenticar
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "username": "allan.vargens",
+  "password": "allanzinho10"
+}
+###
+
+@token = {{autenticar.response.body.access_token}}
+# @name profile
+GET http://localhost:3000/profile
+Authorization: Bearer {{token}}
+################################
+@userId = {{profile.response.body.userId}}
+GET http://localhost:3000/users/{{userId}}
+Authorization: Bearer {{token}}
+################################
+POST http://localhost:3000/{{userId}}/projects
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Project Two",
+  "description": "Description for project two",
+  "projectUrl": "https://projecttwo.com",
+  "githubUrl": "https://github.com/projecttwo",
+  "projectImage": "https://image.com/projecttwo.png",
+  "projectVideo": "https://video.com/projecttwo.mp4",
+  "tagsBack": ["Java", "Spring"],
+  "backendAbout": "Backend description for project two",
+  "tagsFront": ["Angular", "NgRx"],
+  "frontendAbout": "Frontend description for project two"
+}
