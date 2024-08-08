@@ -1,73 +1,271 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Author
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Allan Vargens @programAllan \
+[Visit my Linkedin](https://www.linkedin.com/in/allan-vargens-silva-973978196/)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Technologies
 
-## Description
+- NestJs
+- Prisma
+- Jest
+- PostgreSQL
+- Docker
+- Passport Authentication
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Class Diagram
 
-## Installation
+````mermaid
 
-```bash
-$ yarn install
+classDiagram
+    class User {
+        +String id
+        +String name
+        +String username
+        +String email
+        +String description
+        +String password
+        +String? userImage
+        +String? about
+        +String role
+        +String[] technologiesBack
+        +String[] technologiesFront
+        +String? linkedin
+        +String? gitHub
+        +Project[] projects
+    }
+
+    class Project {
+        +Int id
+        +String title
+        +String? description
+        +String? projectUrl
+        +String? githubUrl
+        +String? projectImage
+        +String? projectVideo
+        +String[] tagsBack
+        +String? backendAbout
+        +String[] tagsFront
+        +String? frontendAbout
+        +Section[] sections
+        +String userId
+        +User user
+    }
+
+    class Section {
+        +Int id
+        +String imageURL
+        +String description
+        +Int projectId
+        +Project project
+    }
+
+    User "1" *-- "many" Project : owns
+    Project "1" *-- "many" Section : contains
+
+    ```
+````
+
+# Documentation Endpoints
+
+## 1. Users Controller
+
+- Base URL: /users
+
+### Endpoints:
+
+- GET /users/
+
+Description: Find a user by their ID.
+
+Authorization: Requires JWT authentication.
+
+Response:
+
+Status: 302 FOUND
+Description: The user has been found.
+Body: Returns the user object.
+
+```
+GET /users/1
+Authorization: Bearer <token>
 ```
 
-## Running the app
+2. Projects Controller
 
-```bash
-# development
-$ yarn run start
+- Base URL: /:userid/projects
 
-# watch mode
-$ yarn run start:dev
+### Endpoints:
 
-# production mode
-$ yarn run start:prod
+- POST /
+  /projects
+
+Description: Create a new project for the user.
+
+Authorization: Requires JWT authentication.
+
+Request Body:
+
+type: CreateProjectDto
+Response:
+
+Status: 201 CREATED
+Description: The project has been successfully created.
+
+```
+POST /UUID/projects
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "title": "New Project",
+  "description": "Description of the new project"
+}
 ```
 
-## Test
+- GET /
+  /projects
 
-```bash
-# unit tests
-$ yarn run test
+Description: Find all projects for a user.
 
-# e2e tests
-$ yarn run test:e2e
+Response:
 
-# test coverage
-$ yarn run test:cov
+Status: 302 FOUND
+
+```
+GET /UUID/projects
 ```
 
-## Support
+- PATCH /
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+/projects/1
 
-## Stay in touch
+Description: Update an existing project.
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Authorization: Requires JWT authentication.
 
-## License
+Request Body:
 
-Nest is [MIT licensed](LICENSE).
+type: UpdateProjectDto
+Response:
+
+Status: 200 OK
+Description: The project has been successfully updated.
+
+```
+PATCH /1/projects/1
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "title": "Updated Project Title"
+}
+
+```
+
+- DELETE /
+  /projects/
+
+Description: Remove a project.
+
+Authorization: Requires JWT authentication.
+
+Response:
+
+Status: 200 OK
+Description: The project has been successfully removed.
+
+```
+DELETE /1/projects/1
+Authorization: Bearer <token>
+```
+
+3. Sections Controller
+   Base URL: /:userId/:projectId/sections
+
+### Endpoints:
+
+- POST /
+  /
+  /sections
+
+Description: Create a new section for a specific project.
+
+Authorization: Requires JWT authentication.
+
+Request Body:
+
+type: CreateSectionDto
+Response:
+
+Status: 201 CREATED
+Description: The section has been successfully created.
+
+```
+POST /1/1/sections
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "imageURL": "http://example.com/image.jpg",
+  "description": "A description about the image"
+}
+```
+
+- GET /
+  /
+  /sections
+
+Description: Get all sections of a project.
+
+Response:
+
+Status: 302 FOUND
+Description: Returns an array of sections.
+
+```
+GET /1/1/sections
+```
+
+- PATCH /
+  /
+  /sections/
+
+Description: Update a section of an existing project.
+
+Authorization: Requires JWT authentication.
+
+Request Body:
+
+type: UpdateSectionDto
+Response:
+
+Status: 200 OK
+Description: The section has been successfully updated.
+
+```
+PATCH /1/1/sections/1
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "description": "Updated description about the image"
+}
+```
+
+- DELETE /
+  /
+  /sections/
+
+Description: Remove a section from a project.
+
+Authorization: Requires JWT authentication.
+
+Response:
+
+Status: 200 OK
+Description: The section has been successfully removed.
+
+```
+DELETE /1/1/sections/1
+Authorization: Bearer <token>
+```
