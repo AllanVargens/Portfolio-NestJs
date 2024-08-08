@@ -33,3 +33,7 @@ Authorization: Bearer {{token}}
   "tagsFront": ["Angular", "NgRx"],
   "frontendAbout": "Frontend description for project two"
 }
+
+POST http://localhost:3000/{{userId}}/projects
+Content-Type: application/json
+Authorization: Bearer {{token}}

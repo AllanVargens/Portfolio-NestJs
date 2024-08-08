@@ -16,7 +16,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @ApiTags('Sections')
-@Controller(':projectId/sections')
+@Controller(':userId/:projectId/sections')
 export class SectionsController {
   constructor(private readonly sectionsService: SectionsService) {}
   @ApiOperation({ summary: 'create a new section' })
@@ -26,8 +26,13 @@ export class SectionsController {
   })
   @Post()
   @UseGuards(JwtAuthGuard)
-  create(@Body() createSectionDto: CreateSectionDto) {
-    return this.sectionsService.create(createSectionDto);
+  create(
+    @Body() createSectionDto: CreateSectionDto,
+    @Param('projectId') projectId: string,
+    @Param('userId') userId: string,
+  ) {
+    createSectionDto.projectId = +projectId;
+    return this.sectionsService.create(createSectionDto, userId);
   }
 
   @ApiOperation({ summary: 'get all sections' })
@@ -35,8 +40,8 @@ export class SectionsController {
     status: HttpStatus.FOUND,
   })
   @Get()
-  findAll() {
-    return this.sectionsService.findAll();
+  findAll(@Param('projectId') projectId: string) {
+    return this.sectionsService.findAll(+projectId);
   }
   @ApiOperation({ summary: 'update a section of one existing project' })
   @ApiResponse({
@@ -49,8 +54,14 @@ export class SectionsController {
     @Param('id') id: string,
     @Body() updateSectionDto: UpdateSectionDto,
     @Param('projectId') projectId: string,
+    @Param('userId') userId: string,
   ) {
-    return this.sectionsService.update(+projectId, +id, updateSectionDto);
+    return this.sectionsService.update(
+      +projectId,
+      +id,
+      userId,
+      updateSectionDto,
+    );
   }
   @ApiOperation({ summary: 'Remove a section' })
   @ApiResponse({
@@ -59,7 +70,11 @@ export class SectionsController {
   })
   @Delete(':id')
   @UseGuards(JwtAuthGuard)
-  remove(@Param('id') id: string, @Param('projectId') projectId: string) {
-    return this.sectionsService.remove(+projectId, +id);
+  remove(
+    @Param('id') id: string,
+    @Param('projectId') projectId: string,
+    @Param('userId') userId: string,
+  ) {
+    return this.sectionsService.remove(+projectId, +id, userId);
   }
 }

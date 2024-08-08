@@ -6,11 +6,11 @@ import { PrismaService } from '../prisma/prisma.service';
 @Injectable()
 export class SectionsService {
   constructor(private prisma: PrismaService) {}
-  async create(createSectionDto: CreateSectionDto) {
+  async create(createSectionDto: CreateSectionDto, userId: string) {
     const { description, imageURL, projectId } = createSectionDto;
 
     const foundProject = await this.prisma.project.findUnique({
-      where: { id: projectId },
+      where: { id: projectId, userId },
     });
 
     if (!foundProject) {
@@ -22,17 +22,20 @@ export class SectionsService {
     });
   }
 
-  findAll() {
-    return this.prisma.section.findMany();
+  findAll(projectId: number) {
+    return this.prisma.section.findMany({
+      where: { projectId },
+    });
   }
 
   async update(
     projectId: number,
     id: number,
+    userId: string,
     updateSectionDto: UpdateSectionDto,
   ) {
     const foundProject = await this.prisma.project.findUnique({
-      where: { id: projectId },
+      where: { id: projectId, userId },
     });
 
     if (!foundProject) {
@@ -45,9 +48,9 @@ export class SectionsService {
     });
   }
 
-  async remove(projectId: number, id: number) {
+  async remove(projectId: number, id: number, userId: string) {
     const foundProject = await this.prisma.project.findUnique({
-      where: { id: projectId },
+      where: { id: projectId, userId },
     });
 
     if (!foundProject) {
