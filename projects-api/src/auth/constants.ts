@@ -1,5 +1,7 @@
+import { env } from 'process';
+
 export const jwtConstants = {
-  secret: 'jwt-secret',
+  secret: env.JWT_CONSTANT,
 };
 
 // export const IS_PUBLIC_KEY = 'isPublic';
