@@ -2,7 +2,7 @@
   <swiper-container class="mySwiper" effect="coverflow"
   centered-slides="true"  coverflow-effect-rotate="0"
   coverflow-effect-depth="100" 
-  coverflow-effect-modifier="3" coverflow-effect-slide-shadows="true"  init="false" >
+  coverflow-effect-modifier="2" coverflow-effect-slide-shadows="true"  init="false" >
   <swiper-slide *ngFor="let card of projects">
     <app-card-project [title]="card.title" [image]="card.sections[0].imageURL"  [id]="card.project_id"></app-card-project>
   </swiper-slide>

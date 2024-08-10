@@ -5,11 +5,9 @@
  display: flex;
  align-items: center;
  justify-content: center;
- justify-content: end;
  text-transform: uppercase;
  letter-spacing: 5px;
  color: white;
- padding: 1rem;
  gap: 2rem;
     span{
         display: block; /* ou inline-block */
@@ -75,9 +73,12 @@
 
 @media (min-width: 781px) {
     .project-bar{
+        width: 100%;
+        justify-content: space-between;
+        margin: 0;
         button {
             position: relative;
-            left: -10px;
+            left: -50px;
             top: -50px;
             color: #fff;
             border:1px solid #fff;
@@ -89,6 +90,7 @@
         }
 
         swiper-container {
+            width: 70%;
             swiper-slider{
                 min-width: 240px;
             }
