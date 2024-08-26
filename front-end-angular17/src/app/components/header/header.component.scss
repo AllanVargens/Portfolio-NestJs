@@ -53,20 +53,6 @@
             padding: 10px;
             text-align: justify;
         }
-
-        .icons{
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            margin: 1rem 0;
-            gap: 1rem;
-            a{
-                color: white;
-                }
-    
-        }
-        
        
     }
     
@@ -142,10 +128,6 @@
             justify-content: start;
             align-items: center;
             gap: 2rem;
-
-            .icons{
-                justify-content: end;
-            }
         }
 
         .user-section{
